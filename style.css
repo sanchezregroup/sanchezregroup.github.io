@@ -1,7 +1,7 @@
 :root {
-    --primary: #c5a059; /* Sophisticated Gold/Tan */
+    --primary: #c5a059; /* Sophisticated Gold */
     --dark: #0f172a;
-    --glass: rgba(255, 255, 255, 0.05);
+    --glass: rgba(255, 255, 255, 0.03);
     --text: #f8fafc;
 }
 
@@ -19,56 +19,80 @@ body {
     overflow-x: hidden;
 }
 
+/* Dynamic Background */
 .background-visual {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at top right, #1e293b, #0f172a);
+    background: radial-gradient(circle at 20% 30%, #1e293b 0%, #0f172a 100%);
     z-index: -1;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 800px; /* Narrower for better reading */
     margin: 0 auto;
-    padding: 4rem 1.5rem;
+    padding: 3rem 1.5rem;
     text-align: center;
 }
 
+/* Brand Logo Styling */
+.brand-logo {
+    width: 110px; /* Professional, non-intrusive size */
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 8px; /* Subtle rounding if it's a JPG */
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Typography */
 header h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 7vw, 3rem);
     font-weight: 700;
     margin-bottom: 1rem;
-    letter-spacing: -1px;
-    background: linear-gradient(to right, #fff, var(--primary));
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 header p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #94a3b8;
     margin-bottom: 3rem;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Form Card Container */
 .form-card {
     background: var(--glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    padding: 10px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
     position: relative;
     overflow: hidden;
 }
 
 .form-loader {
-    padding: 50px;
+    padding: 100px 20px;
     color: var(--primary);
-    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
+/* Animation Setup */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -81,7 +105,18 @@ header p {
 }
 
 footer {
-    margin-top: 3rem;
-    font-size: 0.8rem;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    font-size: 0.75rem;
     color: #475569;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding-top: 2rem;
+    }
+    .form-card {
+        border-radius: 16px;
+    }
 }
