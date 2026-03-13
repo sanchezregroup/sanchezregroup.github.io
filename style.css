@@ -1,8 +1,10 @@
 :root {
-    --primary: #c5a059; /* Sophisticated Gold */
-    --dark: #0f172a;
-    --glass: rgba(255, 255, 255, 0.03);
-    --text: #f8fafc;
+    --primary-metallic: #d1d5db; /* Silver/Platinum match for SRE logo */
+    --dark-base: #0a0c10;
+    --dark-spotlight: #1c232d;
+    --glass: rgba(15, 23, 42, 0.7);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
 }
 
 * {
@@ -13,90 +15,105 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--dark);
-    color: var(--text);
+    background-color: var(--dark-base);
+    color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Dynamic Background */
+/* Texture Background with Spotlight */
 .background-visual {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 30%, #1e293b 0%, #0f172a 100%);
+    background: radial-gradient(circle at center, var(--dark-spotlight) 0%, var(--dark-base) 100%);
     z-index: -1;
 }
 
+/* Subtle Carbon/Leather Texture Overlay */
+.background-visual::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15; /* Adjusted for subtle elegance */
+    pointer-events: none;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+}
+
 .container {
-    max-width: 800px; /* Narrower for better reading */
+    max-width: 800px;
     margin: 0 auto;
     padding: 3rem 1.5rem;
     text-align: center;
 }
 
-/* Brand Logo Styling */
+/* Logo Styling as a Premium Plaque */
 .brand-logo {
-    width: 110px; /* Professional, non-intrusive size */
+    width: 150px;
     height: auto;
-    margin-bottom: 1.5rem;
-    border-radius: 8px; /* Subtle rounding if it's a JPG */
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-    transition: transform 0.3s ease;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s ease;
 }
 
 .brand-logo:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
 }
 
 /* Typography */
 header h1 {
-    font-size: clamp(2rem, 7vw, 3rem);
+    font-size: clamp(2rem, 8vw, 3.2rem);
     font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.03em;
+    /* Metallic Silver Gradient for Text */
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-metallic) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 header p {
     font-size: 1.1rem;
-    color: #94a3b8;
-    margin-bottom: 3rem;
-    max-width: 550px;
+    color: var(--text-muted);
+    margin-bottom: 3.5rem;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Form Card Container */
+/* Form Card (Glassmorphism) */
 .form-card {
     background: var(--glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 5px;
-    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 28px;
+    padding: 6px;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9);
     position: relative;
     overflow: hidden;
 }
 
 .form-loader {
-    padding: 100px 20px;
-    color: var(--primary);
+    padding: 120px 20px;
+    color: var(--primary-metallic);
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-weight: 700;
 }
 
-/* Animation Setup */
+/* Animations */
 .fade-in {
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease-out;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-in.visible {
@@ -105,58 +122,36 @@ header p {
 }
 
 footer {
-    margin-top: 4rem;
-    padding-bottom: 2rem;
-    font-size: 0.75rem;
+    margin-top: 5rem;
+    padding-bottom: 3rem;
+    font-size: 0.8rem;
     color: #475569;
+    letter-spacing: 1px;
 }
 
-/* --- Thank You Page Elements --- */
-
-.success-icon {
-    margin-bottom: 20px;
-    animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
+/* Success Elements for Thank You Page */
 .cta-button {
     display: inline-block;
-    margin-top: 20px;
-    padding: 14px 35px;
-    background: var(--primary);
-    color: var(--dark);
+    margin-top: 25px;
+    padding: 14px 40px;
+    background: var(--primary-metallic);
+    color: var(--dark-base);
     text-decoration: none;
     font-weight: 700;
     border-radius: 50px;
     transition: all 0.3s ease;
     text-transform: uppercase;
     font-size: 0.8rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+    box-shadow: 0 10px 25px rgba(209, 213, 219, 0.3);
     background: #ffffff;
 }
 
-@keyframes scaleIn {
-    from { transform: scale(0); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* Ensure fade-in works on static pages without JS trigger */
-.visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-/* Mobile Adjustments */
 @media (max-width: 600px) {
-    .container {
-        padding-top: 2rem;
-    }
-    .form-card {
-        border-radius: 16px;
-    }
+    .container { padding-top: 2rem; }
+    header p { margin-bottom: 2.5rem; }
 }
-
